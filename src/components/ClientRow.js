@@ -10,7 +10,7 @@ export default function ClientRow({ client }) {
     return (
         <section className="client-row">
             <article>
-                <h3>{client.title.rendered}</h3>
+                <h3 dangerouslySetInnerHTML={{ __html: client.title.rendered }}></h3>
                 <div dangerouslySetInnerHTML={{ __html: client.content.rendered }}></div>
             </article>
             <figure>
