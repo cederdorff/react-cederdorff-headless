@@ -4,15 +4,6 @@ import { useEffect, useState } from "react";
 export default function ClientsSection() {
     const [clients, setClients] = useState([]);
 
-    // useEffect(() => {
-    //     async function getData() {
-    //         const response = await fetch("/data/clients.json");
-    //         const data = await response.json();
-    //         setClients(data);
-    //     }
-    //     getData();
-    // }, []);
-
     useEffect(() => {
         async function getClients() {
             const res = await fetch("https://react-api.cederdorff.com/wp-json/wp/v2/posts?_embed");

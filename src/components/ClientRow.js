@@ -1,11 +1,13 @@
+import { useState, useEffect } from "react";
+
 export default function ClientRow({ client }) {
-    function getFeaturedImageUrl() {
-        let imageUrl = "";
-        if (client._embedded) {
-            imageUrl = client._embedded["wp:featuredmedia"][0].source_url;
+    const [image, setImage] = useState("https://cederdorff.github.io/img/logo512.webp");
+
+    useEffect(() => {
+        if (client._embedded && client._embedded["wp:featuredmedia"]) {
+            setImage(client._embedded["wp:featuredmedia"][0].source_url);
         }
-        return imageUrl;
-    }
+    }, [client._embedded]);
 
     return (
         <section className="client-row">
@@ -14,7 +16,7 @@ export default function ClientRow({ client }) {
                 <div dangerouslySetInnerHTML={{ __html: client.content.rendered }}></div>
             </article>
             <figure>
-                <img src={getFeaturedImageUrl()} alt={client.title.rendered} />
+                <img src={image} alt={client.title.rendered} />
             </figure>
         </section>
     );
