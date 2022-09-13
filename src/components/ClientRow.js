@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
-
 export default function ClientRow({ client }) {
-    const [image, setImage] = useState("https://cederdorff.github.io/img/logo512.webp");
+    let image = "https://cederdorff.github.io/img/logo512.webp";
 
-    useEffect(() => {
-        if (client._embedded && client._embedded["wp:featuredmedia"]) {
-            setImage(client._embedded["wp:featuredmedia"][0].source_url);
-        }
-    }, [client._embedded]);
+    if (client._embedded && client._embedded["wp:featuredmedia"]) {
+        image = client._embedded["wp:featuredmedia"][0].source_url;
+    }
 
     return (
         <section className="client-row">
